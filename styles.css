@@ -1,0 +1,13 @@
+iframe {
+  overflow: hidden;
+  border: none;
+  width: 400px;
+  height: 400px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  -webkit-overflow-scrolling: touch;  /* iOS */
+}
+
+iframe::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, and Opera */
+}

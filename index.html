@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Sketch Quilt</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        width: 80vw;
+        height: 80vh;
+        max-width: 800px;
+        max-height: 800px;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 2em;
+        text-align: center;
+      }
+      .placeholder small {
+        font-size: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid" id="gridContainer"></div>
+    <script>
+      const urls = [
+        'https://andysmith26.github.io/p5_sandbox/',
+        'https://andysmith26.github.io/p5_sandbox/',
+        'https://andysmith26.github.io/p5_sandbox/',
+        'https://andysmith26.github.io/p5_sandbox/',
+      ];
+
+      const gridContainer = document.getElementById('gridContainer');
+      const labels = ['A1', 'A2', 'B1', 'B2'];
+
+      labels.forEach((label, index) => {
+        const iframe = document.createElement('iframe');
+        iframe.src = urls[index] || '';
+        iframe.onload = () => {
+          if (!iframe.contentWindow.document.body) {
+            iframe.srcdoc = `<div class="placeholder">${label}<small>coming soon</small></div>`;
+          }
+        };
+        iframe.onerror = () => {
+          iframe.srcdoc = `<div class="placeholder">${label}<small>coming soon</small></div>`;
+        };
+        gridContainer.appendChild(iframe);
+      });
+    </script>
+  </body>
+</html>
